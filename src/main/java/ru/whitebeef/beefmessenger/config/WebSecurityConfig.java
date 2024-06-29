@@ -39,8 +39,13 @@ public class WebSecurityConfig {
                         authorize
                                 .requestMatchers("/api/login").permitAll()
                                 .requestMatchers("/api/register").permitAll()
-                                //.anyRequest().permitAll()
-                )
+                                .requestMatchers("/register").permitAll()
+                                .anyRequest().authenticated()
+                ) .formLogin(form -> form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/", true)
+                        .permitAll())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
