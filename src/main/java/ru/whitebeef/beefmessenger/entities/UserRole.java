@@ -1,2 +1,7 @@
-package ru.whitebeef.beefmessenger.entities;public class UserRole {
+package ru.whitebeef.beefmessenger.entities;
+
+public enum UserRole {
+
+    USER,
+    ADMIN;
 }

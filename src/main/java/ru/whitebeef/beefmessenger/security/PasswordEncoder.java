@@ -1,2 +1,16 @@
-package ru.whitebeef.beefmessenger.security.filters.security;public class PasswordEncoder {
+package ru.whitebeef.beefmessenger.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@Configuration
+public class PasswordEncoder {
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder =  new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
+
 }
