@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.whitebeef.beefmessenger.dto.LoginDataDto;
 import ru.whitebeef.beefmessenger.services.UserService;
 
-@RestController()
+@RestController
 @RequiredArgsConstructor
-public class UserController {
+public class RegisterController {
 
     private final UserService userService;
 
@@ -22,10 +22,5 @@ public class UserController {
         return ResponseEntity.ok("Ok");
     }
 
-    @PostMapping("/api/login")
-    public ResponseEntity<String> login(@RequestBody @Valid LoginDataDto loginDataDto) {
-        userService.loginUser(loginDataDto);
-        return ResponseEntity.ok("Ok");
-    }
 
 }

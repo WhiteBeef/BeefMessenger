@@ -28,9 +28,14 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return getUser(username);
+    }
+
+    public User getUser(String username) {
         return userRepository.findByUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException(String.format("User with username %s not found", username)));
     }
+
 
     @Transactional
     public void signUpUser(LoginDataDto loginDataDto) {
