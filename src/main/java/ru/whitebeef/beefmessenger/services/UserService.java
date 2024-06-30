@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.whitebeef.beefmessenger.dto.LoginDataDto;
+import ru.whitebeef.beefmessenger.dto.AuthRequestDto;
 import ru.whitebeef.beefmessenger.dto.UserDto;
 import ru.whitebeef.beefmessenger.entities.User;
 import ru.whitebeef.beefmessenger.entities.UserRole;
@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
 
 
     @Transactional
-    public void signUpUser(LoginDataDto loginDataDto) {
+    public void signUpUser(AuthRequestDto loginDataDto) {
         UserDto userDto = userMapper.authRequestDtoToUserDto(loginDataDto);
 
         if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
@@ -57,7 +57,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void loginUser(LoginDataDto loginDataDto) {
+    public void loginUser(AuthRequestDto loginDataDto) {
         UserDto userDto = userMapper.authRequestDtoToUserDto(loginDataDto);
         Optional<User> user = userRepository.findByUsername(userDto.getUsername());
         if (user.isEmpty()) {
